@@ -1,0 +1,49 @@
+{
+  "name": "izup",
+  "version": "1.0.0",
+  "description": "Down for everyone or just you?",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codedotjs/izup.git"
+  },
+  "author": "Rishi Giri <rushforlinux@gmail.com> (rishigiri.com)",
+  "bin": {
+    "izup": "cli.js"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "cli.js"
+  ],
+  "keywords": [
+    "cli-app",
+    "cli",
+    "website",
+    "running",
+    "up",
+    "down",
+    "live"
+  ],
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "got": "^6.7.1",
+    "log-update": "^1.0.2",
+    "ora": "^1.1.0",
+    "update-notifier": "^2.1.0"
+  },
+  "devDependencies": {
+    "ava": "*",
+    "execa": "^0.1.1",
+    "xo": "*"
+  },
+  "bugs": {
+    "url": "https://github.com/codedotjs/izup/issues"
+  },
+  "homepage": "https://github.com/codedotjs/izup#readme",
+  "main": "cli.js"
+}
