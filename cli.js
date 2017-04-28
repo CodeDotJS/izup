@@ -22,11 +22,17 @@ if (!arg || arg === '-h' || arg === '--help') {
  ${chalk.cyan('Usage')} : izup <website>
 
  ${chalk.cyan('Help')}  : izup google.com
-
- ${chalk.dim(`Don't use http or https`)}
 	`);
 	process.exit(1);
 }
+
+const getHostName = url => {
+	const match = url.match(/:\/\/(www[0-9]?\.)?(.[^/:]+)/i);
+	if (match !== null && match.length > 2 && typeof match[2] === 'string' && match[2].length > 0) {
+		return match[2];
+	}
+	return url;
+};
 
 dns.lookup('isup.me', err => {
 	if (err) {
@@ -36,7 +42,9 @@ dns.lookup('isup.me', err => {
 		spinner.text = 'Please wait';
 		spinner.start();
 
-		got(`http://isup.me/${arg}`).then(res => {
+		const url = getHostName(arg);
+
+		got(`http://isup.me/${url}`).then(res => {
 			const a = res.body;
 			const b = a.split('<div id="container">')[1].split('<a')[0].trim();
 
