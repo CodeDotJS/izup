@@ -36,8 +36,6 @@ $ sudo npm install --global izup
  Usage : izup <website>
 
  Help  : izup google.com
-
- Don't use http or https
 ```
 
 ## License
