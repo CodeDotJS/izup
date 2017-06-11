@@ -34,7 +34,7 @@ const getHostName = url => {
 	return url;
 };
 
-dns.lookup('isup.me', err => {
+dns.lookup('downforeveryoneorjustme.com', err => {
 	if (err) {
 		logUpdate(`\n${chalk.red.bold('›')} ${chalk.dim('Please check your internet connection!')}\n`);
 	} else {
@@ -44,9 +44,9 @@ dns.lookup('isup.me', err => {
 
 		const url = getHostName(arg);
 
-		got(`http://isup.me/${url}`).then(res => {
+		got(`http://downforeveryoneorjustme.com/${url}`).then(res => {
 			const a = res.body;
-			const b = a.split('<div id="container">')[1].split('<a')[0].trim();
+			const b = a.split('<div id="container">')[1].split('<a')[0].split('</h1>')[1].trim();
 
 			if (b === `It's just you.`) {
 				logUpdate(`\n ${chalk.cyan.bold('✔')} No kidding. It's up!\n`);
