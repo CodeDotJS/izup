@@ -27,7 +27,7 @@ if (!arg || arg === '-h' || arg === '--help') {
 }
 
 const getHostName = url => {
-	const match = url.match(/:\/\/(www[0-9]?\.)?(.[^/:]+)/i);
+	const match = url.match(/:\/\/(www[/\d]?\.)?(.[^/:]+)/i);
 	if (match !== null && match.length > 2 && typeof match[2] === 'string' && match[2].length > 0) {
 		return match[2];
 	}
@@ -46,13 +46,14 @@ dns.lookup('downforeveryoneorjustme.com', err => {
 
 		got(`http://downforeveryoneorjustme.com/${url}`).then(res => {
 			const a = res.body;
-			const b = a.split('<div id="container">')[1].split('<a')[0].split('</h1>')[1].trim();
+			const b = a.split('down?</h1>')[1].split('<a href="')[0].trim().split('<p>')[1].split('<a')[0].trim();
 
 			if (b === `It's just you.`) {
 				logUpdate(`\n ${chalk.cyan.bold('✔')} No kidding. It's up!\n`);
 			} else {
 				logUpdate(`\n ${chalk.red.bold('✖')} Can't do anything. It's down!\n`);
 			}
+
 			spinner.stop();
 		});
 	}
